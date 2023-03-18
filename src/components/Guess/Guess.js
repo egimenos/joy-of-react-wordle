@@ -1,11 +1,19 @@
 import React from "react";
+import { checkGuess } from "../../../src/game-helpers";
 
-function Guess({ guess }) {
+function Guess({ guess, answer }) {
+  const guessStatus = checkGuess(guess, answer);
+  const isEmptyCell = (letter) => letter === " ";
+  const letterStatus = (index) => guessStatus[index].status;
+
   return (
     <p className="guess">
-      {guess.split("").map((letter) => {
+      {guess.split("").map((letter, index) => {
         return (
-          <span key={Math.random()} className="cell">
+          <span
+            key={index}
+            className={`cell ${isEmptyCell(letter) ? "" : letterStatus(index)}`}
+          >
             {letter}
           </span>
         );

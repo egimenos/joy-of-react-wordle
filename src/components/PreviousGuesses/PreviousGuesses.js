@@ -4,7 +4,7 @@ import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
 const emptyGuess = " ".repeat(5);
 
-function PreviousGuesses({ guesses }) {
+function PreviousGuesses({ guesses, answer }) {
   const emptyGuesses = Array(NUM_OF_GUESSES_ALLOWED - guesses.length).fill(
     emptyGuess
   );
@@ -12,7 +12,7 @@ function PreviousGuesses({ guesses }) {
   return (
     <div className="guess-results">
       {[...guesses, ...emptyGuesses].map((guess) => (
-        <Guess key={Math.random()} guess={guess} />
+        <Guess key={Math.random()} guess={guess} answer={answer} />
       ))}
     </div>
   );
