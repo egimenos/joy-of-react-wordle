@@ -1,6 +1,6 @@
 import React from "react";
 
-function Banner({ type, numberOfGuesses, answer }) {
+function Banner({ type, numberOfGuesses, answer, handleRestart }) {
   const styles = {
     success: "happy banner",
     fail: "sad banner",
@@ -14,6 +14,9 @@ function Banner({ type, numberOfGuesses, answer }) {
   return (
     <div className={styles[type]}>
       <div dangerouslySetInnerHTML={{ __html: content[type] }}></div>
+      <button className="button-restart" onClick={handleRestart}>
+        Restart game
+      </button>
     </div>
   );
 }

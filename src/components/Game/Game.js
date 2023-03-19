@@ -8,17 +8,15 @@ import Banner from "../Banner/Banner";
 import Keyboard from "../Keyboard/Keyboard";
 import { checkGuess } from "../../game-helpers";
 
-// Pick a random word on every pageload.
-const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
-
 function Game() {
   const [historic, setHistoric] = React.useState([]);
   const [showBanner, setShowBanner] = React.useState(false);
   const [bannerType, setBannerType] = React.useState("fail");
   const [inputDisabled, setInputDisabled] = React.useState(false);
   const [lettersStatus, setLettersStatus] = React.useState([]);
+  const [answer, setAnswer] = React.useState(() => sample(WORDS));
+
+  console.info({ answer });
 
   const updateLettersStatus = (guess) => {
     const nextLetterStatus = [...lettersStatus, ...checkGuess(guess, answer)];
@@ -42,6 +40,14 @@ function Game() {
     }
   };
 
+  const handleRestart = () => {
+    setAnswer(sample(WORDS));
+    setHistoric([]);
+    setLettersStatus([]);
+    setInputDisabled(false);
+    setShowBanner(false);
+  };
+
   return (
     <>
       <PreviousGuesses guesses={historic} answer={answer} />
@@ -49,6 +55,7 @@ function Game() {
       <Form disabled={inputDisabled} handleSubmit={handleSubmit}></Form>
       {showBanner && (
         <Banner
+          handleRestart={handleRestart}
           answer={answer}
           type={bannerType}
           numberOfGuesses={historic.length}

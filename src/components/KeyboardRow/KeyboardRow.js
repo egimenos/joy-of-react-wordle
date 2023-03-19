@@ -3,7 +3,7 @@ import KeyboardLetter from "../KeyboardLetter/KeyboardLetter";
 
 function KeyboardRow({ row }) {
   return (
-    <div class="keyboard-row">
+    <div className="keyboard-row">
       {row.map((letter) => (
         <KeyboardLetter cell={letter} />
       ))}
