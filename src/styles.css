@@ -230,3 +230,42 @@ h1 {
     transform: translateY(0%);
   }
 }
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.keyboard-row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.keyboard-cell {
+  padding: 8px;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.keyboard-incorrect {
+  background-color: darkgray;
+  color: white;
+}
+
+.keyboard-misplaced {
+  background-color: var(--color-warning);
+  color: white;
+}
+
+.keyboard-unused {
+  background-color: #e0d6d6;
+  color: black;
+}
+
+.keyboard-correct {
+  background-color: var(--color-success);
+  color: white;
+}
